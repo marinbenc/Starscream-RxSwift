@@ -35,7 +35,7 @@ extension WebSocket {
         }
     }
     
-    //An observable sequence of NSData recieved by the web socket
+    ///An observable sequence of NSData recieved by the web socket
     func rx_data()-> Observable<NSData> {
         return Observable.create { [weak self] observer in
             self?.onData = { data in observer.on(.Next(data)) }
@@ -54,7 +54,7 @@ extension WebSocket {
         }
     }
     
-    //An observable sequence of SocketEvents recieved from the web socket
+    ///An observable sequence of SocketEvents recieved from the web socket
     func rx_response()-> Observable<SocketEvent> {
         return Observable.create { [weak self] observer in
             self?.onConnect = { observer.on(.Next(.Connected)) }
