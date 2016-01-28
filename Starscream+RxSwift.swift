@@ -7,6 +7,7 @@ import Foundation
 import Socket_IO_Client_Swift
 import RxSwift
 
+//An enum returned by rx_response with different types of events that the socket can recieve.
 enum SocketEvent {
     case Connected
     case Message(String)
@@ -14,6 +15,8 @@ enum SocketEvent {
 }
 
 extension WebSocket {
+
+    ///An observable sequence of strings recieved by the websocket
     func rx_text()-> Observable<String> {
         return Observable.create { [weak self] observer in
             self?.onText = { text in observer.on(.Next(text)) }
@@ -32,6 +35,7 @@ extension WebSocket {
         }
     }
     
+    //An observable sequence of NSData recieved by the web socket
     func rx_data()-> Observable<NSData> {
         return Observable.create { [weak self] observer in
             self?.onData = { data in observer.on(.Next(data)) }
@@ -50,6 +54,7 @@ extension WebSocket {
         }
     }
     
+    //An observable sequence of SocketEvents recieved from the web socket
     func rx_response()-> Observable<SocketEvent> {
         return Observable.create { [weak self] observer in
             self?.onConnect = { observer.on(.Next(.Connected)) }
