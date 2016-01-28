@@ -6,6 +6,8 @@ A simple and lightweight extension to Starscream to track suscribe to socket eve
 * `rx_text`: emits strings recieved from the socket, and an error on disconnect
 * `rx_data`: emits data recieved from the socket, and an error on disconnect
 
+The socket currently disconnects when disposing.
+
 ## Usage examples
 
 ```Swift
